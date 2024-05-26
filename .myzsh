@@ -28,6 +28,7 @@ alias ovim='nvim ~/.config/nvim/'
 alias psource='source ~/.zshrc'
 alias lg='lazygit'
 alias ld='lazydocker'
+alias t='tmux'
 
 alias xargs="xargs "
 alias fz="fzf -m --bind 'ctrl-a:toggle-all'"
