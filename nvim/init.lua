@@ -166,11 +166,12 @@ vim.opt.autoindent = true
 vim.opt.hlsearch = true
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('i', 'jk', '<Esc>')
+-- vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==') -- move line up(n)
 vim.keymap.set('n', '<A-k>', ':m .-2<CR>==') -- move line down(n)
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv") -- move line up(v)
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv") -- move line down(v)
+vim.keymap.set('n', '##', ':Explore<cr>', { desc = 'Open Explorer' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -299,6 +300,7 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        ['##'] = { name = 'Open Explorer', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -847,7 +849,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
