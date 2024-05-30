@@ -1,12 +1,15 @@
 #!/usr/bin/env zsh
 
-mkdir ~/.config
-rm -rf ~/.config/nvim ~/.config/tmux ~/.config/wezterm ~/.config/yazi ~/.config/zsh
-ln -sf ./nvim ~/.config/nvim
-ln -sf ./tmux ~/.config/tmux
-ln -sf ./wezterm ~/.config/wezterm
-ln -sf ./yazi ~/.config/yazi
-ln -sf ./zsh ~/.config/zsh
-rm -f ~/.zshrc
-ln -sf ~/.config/zsh/zshrc ~/.zshrc
+p=$(dirname $0)
+p=$(realpath $p)
+t=$HOME/.config
+mkdir $t 2>/dev/null
+rm -rf $t/nvim $t/tmux $t/wezterm $t/yazi $t/zsh
+ln -sf $p/nvim $t/nvim
+ln -sf $p/tmux $t/tmux
+ln -sf $p/wezterm $t/wezterm
+ln -sf $p/yazi $t/yazi
+ln -sf $p/zsh $t/zsh
+rm -f $HOME/.zshrc
+ln -sf $p/zsh/zshrc $HOME/.zshrc
 
