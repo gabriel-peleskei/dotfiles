@@ -3,8 +3,13 @@
 
 # eval "$(starship init zsh)"
 # eval "$(zoxide init zsh --cmd cd)"
+# eval "$(fzf --zsh)"
 # Path to your oh-my-zsh installation.
 # export ZSH="./oh-my-zsh"
+#
+# export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"'
+# export FZF_DEFAULT_OPTS='--preview "bat --color=always {} | head -500"'
+export FZF_DEFAULT_OPTS='--height=50% --margin=5%,5%,5%,5% --layout=reverse-list --border=double'
 export PATH=/usr/local/go/bin:$PATH
 export TERM='screen-256color'
 alias ibrew='arch -x86_64 /usr/local/Homebrew/bin/brew'
@@ -88,6 +93,10 @@ alias dcs='dc stop'
 function dce() {
   dc exec $1 bash
 }
+ 
+function dcz() {
+  dc exec $1 zsh
+}
 
 
 function yy() {
@@ -100,7 +109,7 @@ function yy() {
 }
 
 
-function j() {
+function n() {
   if [ -z "$1" ]; then
     nvim .
   else 
@@ -112,3 +121,4 @@ function j() {
     fi
   fi
 }
+
