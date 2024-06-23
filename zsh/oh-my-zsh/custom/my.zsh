@@ -129,3 +129,12 @@ function n() {
   fi
 }
 
+function update-flatpak-desktop() {
+  for f in $(find /var/lib/flatpak/app/ -depth -type f -name '*.desktop')
+  do
+    fn=$(basename $f)
+    if [ $fn = "org.telegram.desktop" ]; then continue; fi
+    sudo ln -sf $f /usr/share/applications/$fn
+    sudo chmod 644 /usr/share/applications/$fn
+  done
+}
