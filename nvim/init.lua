@@ -103,6 +103,10 @@ vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = ''
@@ -201,6 +205,11 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -387,8 +396,13 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch Git [F]iles' })
-      vim.keymap.set('n', '<leader>ss', '<cmd>Telescope find_files hidden=true<cr>', { desc = '[S]earch File[s]' })
+      vim.keymap.set('n', '<leader>ss', builtin.find_files, { desc = '[S]earch Git File[s]' })
+      vim.keymap.set(
+        'n',
+        '<leader>sf',
+        '<cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true exclude="*.git""<CR>',
+        { desc = '[S]earch [F]iles' }
+      )
       vim.keymap.set('n', '<leader>sc', builtin.builtin, { desc = '[S]earch Sele[c]t Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -520,6 +534,9 @@ require('lazy').setup({
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+          vim.keymap.set({ 'i', 'n', 'v' }, '<C-k>', vim.lsp.buf.hover, { buffer = event.buf, desc = 'Hover Documentation(2)' })
+          vim.keymap.set({ 'i', 'n', 'v' }, '<C-p>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Show function signature' })
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
