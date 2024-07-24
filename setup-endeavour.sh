@@ -9,7 +9,7 @@ rm -r $p/tmux/plugins/tpm $p/zsh/oh-my-zsh/custom/themes/powerlevel10k
 git clone --depth=1 https://github.com/tmux-plugins/tpm $p/tmux/plugins/tpm
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $p/zsh/oh-my-zsh/custom/themes/powerlevel10k
 
-sudo yay -S zoxide bat fd ripgrep eza jq yazi fzf zsh poppler unarchiver ffmpegthumbnailer neovim lazygit vim tmux tree xclip \
+sudo yay -S zoxide bat fd ripgrep eza jq yazi fzf zsh poppler unarchiver ffmpegthumbnailer neovim lazygit vim tmux tree xclip kitty \
       otf-monaspace otf-monaspace-nerd ttf-nerd-fonts-symbols-mono ttf-nerd-fonts-symbols
 sudo fc-cache
 
