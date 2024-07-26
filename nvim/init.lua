@@ -375,6 +375,18 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
+        defaults = {
+          layout_config = {
+            vertical = {
+              width = 0.9,
+              preview_height = 0.7,
+            },
+            bottom_pane = {
+              height = 0.3,
+            },
+          },
+          layout_strategy = 'vertical',
+        },
         -- defaults = {
         --   mappings = {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
@@ -397,12 +409,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ss', builtin.find_files, { desc = '[S]earch Git File[s]' })
-      vim.keymap.set(
-        'n',
-        '<leader>sf',
-        '<cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true exclude="*.git""<CR>',
-        { desc = '[S]earch [F]iles' }
-      )
+      vim.keymap.set('n', '<leader>sf', function()
+        builtin.find_files { hidden = true, no_ignore = true, no_ignore_parent = true }
+      end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sc', builtin.builtin, { desc = '[S]earch Sele[c]t Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -513,11 +522,19 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          local lspdoc = function()
+            require('telescope.builtin').lsp_document_symbols { fname_width = 0.3, symbol_width = 0.7, show_line = true }
+          end
+          map('<leader>ds', lspdoc, '[D]ocument [S]ymbols')
+          map('gs', lspdoc, '[G]o to Document [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          local locwok = function()
+            require('telescope.builtin').lsp_dynamic_workspace_symbols { fname = 0.6, show_line = true }
+          end
+          map('<leader>ws', locwok, '[W]orkspace [S]ymbols')
+          map('gw', locwok, '[G]o to [W]orkspace Symbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
