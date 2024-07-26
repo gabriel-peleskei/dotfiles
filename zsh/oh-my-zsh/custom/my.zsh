@@ -12,6 +12,8 @@
 export FZF_DEFAULT_OPTS='--height=50% --margin=5%,5%,5%,5% --layout=reverse-list --border=double'
 export PATH=/usr/local/go/bin:$PATH
 export TERM='screen-256color'
+export UID=$(id -u)
+export GID=$(id -g)
 alias ibrew='arch -x86_64 /usr/local/Homebrew/bin/brew'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -41,6 +43,7 @@ alias psource='source $HOME/.zshrc'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias tm='tmux'
+alias rg='rg -S'
 
 alias fz="fzf -m --bind 'ctrl-a:toggle-all'"
 alias fx="fz | xargs "
