@@ -98,6 +98,7 @@ alias gwfr="gbfr gw"
 alias dc='docker compose'
 alias dcu='dc up'
 alias dcud='dcu -d'
+alias dcr='dc restart'
 alias dcs='dc stop'
 
 function dce() {
