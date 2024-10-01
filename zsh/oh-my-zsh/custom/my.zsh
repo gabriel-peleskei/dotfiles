@@ -9,6 +9,7 @@
 #
 # export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"'
 # export FZF_DEFAULT_OPTS='--preview "bat --color=always {} | head -500"'
+. "$HOME/.asdf/asdf.sh"
 export FZF_DEFAULT_OPTS='--height=50% --margin=5%,5%,5%,5% --layout=reverse-list --border=double'
 export PATH=/usr/local/go/bin:$PATH
 export TERM='screen-256color'
@@ -142,3 +143,5 @@ function update-flatpak-desktop() {
     sudo chmod 644 /usr/share/applications/$fn
   done
 }
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
