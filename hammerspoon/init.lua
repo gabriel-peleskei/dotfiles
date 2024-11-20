@@ -45,3 +45,5 @@ for i, appName in ipairs(appBindings) do
 		end
 	end)
 end
+
+require("tiles")
