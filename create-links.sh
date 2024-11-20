@@ -10,6 +10,7 @@ ln -sf $p/tmux $t/tmux
 ln -sf $p/wezterm $t/wezterm
 ln -sf $p/yazi $t/yazi
 ln -sf $p/zsh $t/zsh
+ln -sf $p/hammerspoon $HOME/.hammerspoon
 rm -f $HOME/.zshrc
 ln -sf $p/zsh/zshrc $HOME/.zshrc
 
