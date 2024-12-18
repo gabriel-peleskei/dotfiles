@@ -4,9 +4,10 @@ local appBindings = {
 	"Firefox", -- cmd + 2
 	"Visual Studio Code", -- cmd + 3
 	"Finder", -- cmd + 4
-	"Telegram",
-	"Safari",
-	"Mail",
+	"Telegram", -- 5
+	"Safari", -- 6
+	"Mail", -- 7
+	"DBeaver", -- 8
 }
 
 for i, appName in ipairs(appBindings) do
@@ -46,4 +47,4 @@ for i, appName in ipairs(appBindings) do
 	end)
 end
 
-require("tiles")
+-- require("tiles")

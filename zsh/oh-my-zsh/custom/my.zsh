@@ -10,7 +10,7 @@
 # export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"'
 # export FZF_DEFAULT_OPTS='--preview "bat --color=always {} | head -500"'
 export FZF_DEFAULT_OPTS='--height=50% --margin=5%,5%,5%,5% --layout=reverse-list --border=double'
-export PATH=/usr/local/go/bin:$PATH
+# export PATH=/usr/local/go/bin:$PATH
 export TERM='screen-256color'
 export UID=$(id -u)
 export GID=$(id -g)
@@ -102,11 +102,15 @@ alias dcr='dc restart'
 alias dcs='dc stop'
 
 function dce() {
-  dc exec $1 bash
+  dc exec $1 bash --login
 }
  
 function dcz() {
-  dc exec $1 zsh
+  dc exec $1 zsh --login
+}
+
+function dcsh() {
+  dc exec $1 sh --login
 }
 
 
@@ -149,3 +153,4 @@ elif [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; the
   . /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+. $HOME/.cargo/env
